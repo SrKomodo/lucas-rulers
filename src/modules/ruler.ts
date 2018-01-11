@@ -1,8 +1,10 @@
 class Ruler {
+  protected digit: number;
   protected numbers: number[][];
   protected triangles: number[][]; // [start, end, result]
 
   constructor(digit: number) {
+    this.digit = digit;
     this.numbers = [];
     this.triangles = [];
 
@@ -42,6 +44,7 @@ class Ruler {
   public render(ctx: CanvasRenderingContext2D, x: number, y: number) {
 
     /*
+      header height  = 30;
       digit height   = 20;
       digit width    = 40;
       triangle width = 50;
@@ -59,18 +62,28 @@ class Ruler {
     ctx.textBaseline = "middle";
     ctx.strokeStyle = "#221005";
 
-    // Draw bakcground
+    // Draw background
     ctx.fillStyle = "#e7c592";
     ctx.beginPath();
-    ctx.rect(x, y, 90, 900);
+    ctx.rect(x, y, 90, 930);
     ctx.fill();
     ctx.stroke();
+
+    // Draw header
+    ctx.fillStyle = "#221005";
+    ctx.fillText(this.digit.toString(), x + 45, y + 15);
+
+    y += 30; // Offset everything else so they dont mess with the header
 
     // Store all i can in paths to bundle draw calls together
     const triangles = new Path2D();
     const rows = new Path2D();
 
     for (const row of this.numbers) {
+      // Generate row separators
+      rows.moveTo(x, y + digitI * 20);
+      rows.lineTo(x + 90, y + digitI * 20);
+
       // Generate triangles
       for (const triangle of this.triangles[rowI]) {
         triangles.moveTo(x + 50, y + digitI * 20 + triangle[0] * 20);
@@ -78,16 +91,11 @@ class Ruler {
         triangles.lineTo(x, y + digitI * 20 + triangle[2] * 20 + 10);
         triangles.closePath();
       }
+
       // Draw digits
-      ctx.fillStyle = "#221005";
       for (const digit of row) {
         ctx.fillText(digit.toString(), x + 70, y + digitI * 20 + 10);
         digitI++;
-      }
-      // Generate row separators
-      if (digitI < 900) {
-        rows.moveTo(x, y + digitI * 20);
-        rows.lineTo(x + 90, y + digitI * 20);
       }
       rowI++;
     }
