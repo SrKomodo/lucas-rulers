@@ -29,9 +29,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d");
 
-  // Set canvas size to screen size
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-
   slideIn(ctx, rulers, offscreen);
 });

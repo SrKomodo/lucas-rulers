@@ -14,25 +14,27 @@ function slideIn(ctx: CanvasRenderingContext2D, rulers: Ruler[], offscreen: HTML
       i: index,
       ruler,
       progress: 0,
-      start: window.innerWidth,
+      start: ctx.canvas.width,
       end: index * 90,
     };
   });
 
-  const speed = 100;
+  const speed = 50;
   let i = 0;
 
   function draw() {
     if (animations[i].progress >= 1) {
       animations[i].progress = 1;
       i++;
+    } else {
+      animations[i].progress += 1 / speed;
     }
-    animations[i].progress += 1 / speed;
 
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     for (const anim of animations) {
-      const x = Math.abs(anim.end * anim.progress - anim.start * (1 - anim.progress));
+      const interpolation = 1 - Math.pow(1 - anim.progress, 2);
+      const x = anim.start - (anim.start - anim.end) * interpolation;
       ctx.drawImage(offscreen, anim.i * 90, 0, 90, 930, x, 0, 90, 930);
     }
 
