@@ -1,7 +1,3 @@
-const rowHeight = 20;
-const digitWidth = 40;
-const triangleWidth = 50;
-
 class Ruler {
   protected numbers: number[][];
   protected triangles: number[][]; // [start, end, result]
@@ -44,16 +40,20 @@ class Ruler {
   }
 
   public render(ctx: CanvasRenderingContext2D, x: number, y: number) {
+
+    /*
+      digit height   = 20;
+      digit width    = 40;
+      triangle width = 50;
+      total height   = 900;
+    */
+
     let rowI = 0;
     let digitI = 0;
-
-    // Calculate height beforehand so i can draw the background first
-    const height = this.numbers.map((value) => value.length).reduce((prev, curr) => prev + curr, 0);
 
     // Setup default styles
     ctx.lineCap = "butt";
     ctx.lineJoin = "bevel";
-    ctx.lineWidth = 1.2;
     ctx.font = "16px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -62,37 +62,43 @@ class Ruler {
     // Draw bakcground
     ctx.fillStyle = "#e7c592";
     ctx.beginPath();
-    ctx.rect(x, y, triangleWidth + digitWidth, height * rowHeight);
+    ctx.rect(x, y, 90, 900);
     ctx.fill();
     ctx.stroke();
 
+    // Store all i can in paths to bundle draw calls together
+    const triangles = new Path2D();
+    const rows = new Path2D();
+
     for (const row of this.numbers) {
-      // Draw triangles
-      ctx.fillStyle = "#9c7761";
+      // Generate triangles
       for (const triangle of this.triangles[rowI]) {
-        ctx.beginPath();
-        ctx.moveTo(x + triangleWidth, y + digitI * rowHeight + triangle[0] * rowHeight);
-        ctx.lineTo(x + triangleWidth, y + digitI * rowHeight + triangle[1] * rowHeight + rowHeight);
-        ctx.lineTo(x, y + digitI * rowHeight + triangle[2] * rowHeight + rowHeight / 2);
-        ctx.closePath();
-        ctx.fill();
-        ctx.stroke();
+        triangles.moveTo(x + 50, y + digitI * 20 + triangle[0] * 20);
+        triangles.lineTo(x + 50, y + digitI * 20 + triangle[1] * 20 + 20);
+        triangles.lineTo(x, y + digitI * 20 + triangle[2] * 20 + 10);
+        triangles.closePath();
       }
       // Draw digits
       ctx.fillStyle = "#221005";
       for (const digit of row) {
-        ctx.fillText(digit.toString(), x + triangleWidth + digitWidth / 2, y + digitI * rowHeight + rowHeight / 2);
+        ctx.fillText(digit.toString(), x + 70, y + digitI * 20 + 10);
         digitI++;
       }
-      // Draw row separators
-      if (digitI < height) {
-        ctx.beginPath();
-        ctx.moveTo(x, y + digitI * rowHeight);
-        ctx.lineTo(x + triangleWidth + digitWidth, y + digitI * rowHeight);
-        ctx.stroke();
+      // Generate row separators
+      if (digitI < 900) {
+        rows.moveTo(x, y + digitI * 20);
+        rows.lineTo(x + 90, y + digitI * 20);
       }
       rowI++;
     }
+
+    // Draw triangles
+    ctx.fillStyle = "#9c7761";
+    (ctx.fill as (fillRule: string | Path2D) => void)(triangles); // Small hack to please typescript
+    ctx.stroke(triangles);
+
+    // Draw row separators
+    ctx.stroke(rows);
   }
 }
 
