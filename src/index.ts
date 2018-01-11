@@ -1,5 +1,6 @@
 import "./index.scss";
 
+import slideIn from "./modules/animator";
 import IndexRuler from "./modules/indexRuler";
 import Ruler from "./modules/ruler";
 
@@ -32,8 +33,5 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
 
-  for (let i = 0; i <= rulers.length; i++) {
-    const ruler = rulers[i];
-    ruler.render(ctx, i * 95, 0);
-  }
+  slideIn(ctx, rulers, offscreen);
 });
