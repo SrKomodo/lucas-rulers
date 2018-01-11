@@ -1,3 +1,7 @@
+const rowHeight = 20;
+const digitWidth = 40;
+const triangleWidth = 50;
+
 class Ruler {
   protected numbers: number[][];
   protected triangles: number[][]; // [start, end, result]
@@ -37,10 +41,58 @@ class Ruler {
       this.triangles.push(rowTriangles);
       this.numbers.push(row);
     }
-    console.log(this.numbers);
-    console.log(this.triangles.map((value) => {
-      return value.map((n) => `${n[2]} ${n[0]}\n  ${n[1]}`).join("\n");
-    }).join("\n===\n"));
+  }
+
+  public render(ctx: CanvasRenderingContext2D, x: number, y: number) {
+    let rowI = 0;
+    let digitI = 0;
+
+    // Calculate height beforehand so i can draw the background first
+    const height = this.numbers.map((value) => value.length).reduce((prev, curr) => prev + curr, 0);
+
+    // Setup default styles
+    ctx.lineCap = "butt";
+    ctx.lineJoin = "bevel";
+    ctx.lineWidth = 1.2;
+    ctx.font = "16px Arial";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.strokeStyle = "#221005";
+
+    // Draw bakcground
+    ctx.fillStyle = "#e7c592";
+    ctx.beginPath();
+    ctx.rect(x, y, triangleWidth + digitWidth, height * rowHeight);
+    ctx.fill();
+    ctx.stroke();
+
+    for (const row of this.numbers) {
+      // Draw triangles
+      ctx.fillStyle = "#9c7761";
+      for (const triangle of this.triangles[rowI]) {
+        ctx.beginPath();
+        ctx.moveTo(x + triangleWidth, y + digitI * rowHeight + triangle[0] * rowHeight);
+        ctx.lineTo(x + triangleWidth, y + digitI * rowHeight + triangle[1] * rowHeight + rowHeight);
+        ctx.lineTo(x, y + digitI * rowHeight + triangle[2] * rowHeight + rowHeight / 2);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+      // Draw digits
+      ctx.fillStyle = "#221005";
+      for (const digit of row) {
+        ctx.fillText(digit.toString(), x + triangleWidth + digitWidth / 2, y + digitI * rowHeight + rowHeight / 2);
+        digitI++;
+      }
+      // Draw row separators
+      if (digitI < height) {
+        ctx.beginPath();
+        ctx.moveTo(x, y + digitI * rowHeight);
+        ctx.lineTo(x + triangleWidth + digitWidth, y + digitI * rowHeight);
+        ctx.stroke();
+      }
+      rowI++;
+    }
   }
 }
 
