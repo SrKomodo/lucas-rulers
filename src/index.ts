@@ -1,6 +1,7 @@
 import "./index.scss";
 
 import slideIn from "./modules/animator";
+import calculate from "./modules/calculator";
 import IndexRuler from "./modules/indexRuler";
 import Ruler from "./modules/ruler";
 
@@ -29,5 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
   const ctx = canvas.getContext("2d");
 
-  slideIn(ctx, rulers, offscreen);
+  document.getElementById("calculate").addEventListener("click", () => {
+    calculate(
+      (document.getElementById("number") as HTMLInputElement).value,
+      parseInt((document.getElementById("multiplier") as HTMLInputElement).value, 10),
+      ctx,
+      offscreen,
+    );
+  });
 });

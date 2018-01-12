@@ -1,11 +1,38 @@
 body {
   margin: 0;
   overflow: hidden;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #container {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+}
+
+#sidebar {
+  align-self: flex-start;
+  text-align: center;
+
+  p {
+    font-size: x-small;
+  }
+
+  input {
+    text-align: center;
+    appearance: textfield;
+
+    &:invalid {
+      background: red;
+    }
+  }
+}
+
+#number {
+  width: 10em;
+}
+
+#multiplier {
+  width: 1em;
 }

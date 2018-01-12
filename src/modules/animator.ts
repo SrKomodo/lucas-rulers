@@ -11,7 +11,7 @@ interface AnimatedRuler {
 function slideIn(ctx: CanvasRenderingContext2D, rulers: Ruler[], offscreen: HTMLCanvasElement) {
   const animations = rulers.map((ruler, index) => {
     return {
-      i: index,
+      i: ruler.digit + 1,
       ruler,
       progress: 0,
       start: ctx.canvas.width,

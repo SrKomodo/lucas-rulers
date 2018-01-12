@@ -1,5 +1,5 @@
 class Ruler {
-  protected digit: number;
+  public digit: number;
   protected numbers: number[][];
   protected triangles: number[][]; // [start, end, result]
 

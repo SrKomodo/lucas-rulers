@@ -4,6 +4,7 @@ class IndexRuler extends Ruler {
   constructor() {
     super(0); // Generate a 0 ruler
     this.triangles = []; // But we dont care about the triangles
+    this.digit = -1;
   }
 
   public render(ctx: CanvasRenderingContext2D, x: number, y: number) {
@@ -39,7 +40,7 @@ class IndexRuler extends Ruler {
 
       // Notice that there is no triangle code here
 
-      ctx.fillText(rowI.toString(10), x + 25, y + digitI * 20 + row.length / 2 * 20); // Here we draw the extra numbers
+      ctx.fillText((rowI + 1).toString(10), x + 25, y + digitI * 20 + row.length / 2 * 20); // draw extra numbers
       for (const digit of row) {
         ctx.fillText(digit.toString(), x + 70, y + digitI * 20 + 10);
         digitI++;
