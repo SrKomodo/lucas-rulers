@@ -1,8 +1,22 @@
+/** Represents a Ruler */
 class Ruler {
+  /** The digit the ruler represents */
   public digit: number;
+  /**
+   * Array of the numbers on the right side of the ruler.
+   * Each item in the array is one of the rows, that contains the numbers that the row has
+   */
   protected numbers: number[][];
-  protected triangles: number[][]; // [start, end, result]
+  /**
+   * Array of all the triangles on the left side of the ruler.
+   * Each triangle is an array of [Start number, End number, Number it points to]
+   */
+  protected triangles: number[][];
 
+  /**
+   * Creates a new Ruler
+   * @param digit What digit the ruler is for
+   */
   constructor(digit: number) {
     this.digit = digit;
     this.numbers = [];
