@@ -21,6 +21,6 @@ module.exports = merge(common, {
   },
   plugins: [
     new UglifyJSPlugin(),
-    new ExtractTextPlugin("bundle.css")
+    new ExtractTextPlugin("bundle.[contenthash].css")
   ]
 });
