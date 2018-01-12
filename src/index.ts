@@ -5,7 +5,7 @@ import calculate from "./modules/calculator";
 import IndexRuler from "./modules/indexRuler";
 import Ruler from "./modules/ruler";
 
-import * as background from "./assets/background.png";
+import * as rulerBG from "./assets/ruler.png";
 import * as triangle from "./assets/triangle.png";
 
 // Load images
@@ -14,10 +14,10 @@ triangleTexture.src = triangle;
 triangleTexture.id = "triangle";
 document.body.appendChild(triangleTexture);
 
-const backgroundTexture = document.createElement("img");
-backgroundTexture.src = background;
-backgroundTexture.id = "background";
-document.body.appendChild(backgroundTexture);
+const rulerTexture = document.createElement("img");
+rulerTexture.src = rulerBG;
+rulerTexture.id = "background";
+document.body.appendChild(rulerTexture);
 
 window.addEventListener("DOMContentLoaded", () => {
 

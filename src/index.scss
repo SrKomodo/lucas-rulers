@@ -1,7 +1,14 @@
+$color: darken(#3F2D1A, 5);
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   overflow: hidden;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: $color;
 }
 
 #triangle, #background {
@@ -11,35 +18,88 @@ body {
 #container {
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
 }
 
 #sidebar {
-  align-self: flex-start;
-  text-align: center;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(0, 0, 0, .8);
+  background: url(assets/background.png);
+  background-size: 40% auto;
+  padding: 10px;
+  max-width: 400px;
 
-  p {
-    font-size: x-small;
+  h2, h3 {
+    text-align: center;
+  }
+}
+
+#footer {
+  text-align: center;
+  font-size: x-small;
+}
+
+#inputs {
+  text-align: center;
+  vertical-align: middle;
+
+  a {
+    cursor: pointer;
+    color: black;
+    text-decoration: unset;
   }
 
-  input {
-    text-align: center;
+  input, a {
+    $buttonColor: lighten($color, 35);
+    border: 1px solid darken($buttonColor, 25);
+    background: $buttonColor;
+  }
 
+  input, span, a {
+    display: inline-block;
+    vertical-align: middle;
+    font-family: monospace;
+    text-align: center;
+    padding: 0 3px;
+    height: 20px;
+    margin: 0;
+    
     &:invalid {
       background: red;
     }
   }
+
+  a, span {
+    &::before {
+      content: '';
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
 }
 
 #number {
-  width: 10em;
+  width: 11ch;
 }
 
 #multiplier {
-  width: 1em;
+  width: 2ch;
 }
 
+#canvasContainer {
+  background: url(assets/triangle.png);
+  width: 900px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
