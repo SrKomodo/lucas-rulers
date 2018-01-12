@@ -40,57 +40,6 @@ class Ruler {
       this.numbers.push(row);
     }
   }
-
-  public render(ctx: CanvasRenderingContext2D, x: number, y: number) {
-
-    /*
-      header height  = 30;
-      digit height   = 20;
-      digit width    = 40;
-      triangle width = 50;
-      total height   = 900;
-    */
-
-    let rowI = 0;
-    let digitI = 0;
-
-    // Setup default styles
-    ctx.font = "16px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    // Draw background
-    ctx.drawImage(document.getElementById("background") as HTMLImageElement, x, y);
-
-    // Draw header
-    ctx.fillStyle = ctx.createPattern(document.getElementById("triangle") as HTMLImageElement, "repeat");
-    ctx.fillText(this.digit.toString(), x + 45, y + 15);
-
-    y += 30; // Offset everything else so they dont mess with the header
-
-    // Store all i can in paths to bundle draw calls together
-    const triangles = new Path2D();
-
-    for (const row of this.numbers) {
-      // Generate triangles
-      for (const triangle of this.triangles[rowI]) {
-        triangles.moveTo(x + 50, y + digitI * 20 + triangle[0] * 20);
-        triangles.lineTo(x + 50, y + digitI * 20 + triangle[1] * 20 + 20);
-        triangles.lineTo(x, y + digitI * 20 + triangle[2] * 20 + 10);
-        triangles.closePath();
-      }
-
-      // Draw digits
-      for (const digit of row) {
-        ctx.fillText(digit.toString(), x + 70, y + digitI * 20 + 10);
-        digitI++;
-      }
-      rowI++;
-    }
-
-    // Draw triangles
-    (ctx.fill as (fillRule: string | Path2D) => void)(triangles); // Small hack to please typescript
-  }
 }
 
 export default Ruler;

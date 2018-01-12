@@ -8,7 +8,7 @@ interface AnimatedRuler {
   end: number;
 }
 
-function slideIn(ctx: CanvasRenderingContext2D, rulers: Ruler[], offscreen: HTMLCanvasElement) {
+function slideIn(ctx: CanvasRenderingContext2D, rulers: Ruler[], textures: HTMLImageElement) {
   const animations = rulers.map((ruler, index) => {
     return {
       i: ruler.digit + 1,
@@ -35,7 +35,7 @@ function slideIn(ctx: CanvasRenderingContext2D, rulers: Ruler[], offscreen: HTML
     for (const anim of animations) {
       const interpolation = 1 - Math.pow(1 - anim.progress, 2);
       const x = anim.start - (anim.start - anim.end) * interpolation;
-      ctx.drawImage(offscreen, anim.i * 90, 0, 90, 930, x, 0, 90, 930);
+      ctx.drawImage(textures, anim.i * 90, 0, 90, 930, x, 0, 90, 930);
     }
 
     if (i < animations.length) {

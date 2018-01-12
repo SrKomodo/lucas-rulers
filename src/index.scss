@@ -23,7 +23,7 @@ body {
 #sidebar {
   z-index: 1;
   box-shadow: 0 0 15px rgba(0, 0, 0, .8);
-  background: url(assets/background.png);
+  background: url(assets/bgLight.jpg);
   background-size: 40% auto;
   padding: 10px;
   max-width: 400px;
@@ -94,7 +94,7 @@ body {
 }
 
 #canvasContainer {
-  background: url(assets/triangle.png);
+  background: url(assets/bgDark.jpg);
   width: 900px;
   flex-grow: 1;
   display: flex;
