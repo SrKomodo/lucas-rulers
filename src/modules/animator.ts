@@ -1,49 +1,25 @@
 import Ruler from "./ruler";
 
-interface AnimatedRuler {
-  i: number;
-  ruler: Ruler;
-  progress: number;
-  start: number;
-  end: number;
-}
-
-function slideIn(ctx: CanvasRenderingContext2D, rulers: Ruler[], textures: HTMLImageElement) {
-  const animations = rulers.map((ruler, index) => {
-    return {
-      i: ruler.digit + 1,
-      ruler,
-      progress: 0,
-      start: ctx.canvas.width,
-      end: index * 90,
-    };
-  });
-
-  const speed = 50;
-  let i = 0;
-
-  function draw() {
-    if (animations[i].progress >= 1) {
-      animations[i].progress = 1;
-      i++;
-    } else {
-      animations[i].progress += 1 / speed;
+/**
+ * @param rulers the indexes of the rulers you want to animate
+ * @param t 0..1, progress of the animation
+ * @param ctx context to render to
+ * @param textures Texture image
+ */
+function drawRulers(rulers: number[], t: number, ctx: CanvasRenderingContext2D, textures: HTMLImageElement) {
+  if (t >= 1) {
+    for (let i = 0; i < rulers.length; i++) {
+      const ruler = rulers[i];
+      ctx.drawImage(textures, (ruler + 1) * 90, 0, 90, 930, i * 90, 0, 90, 930);
     }
-
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-    for (const anim of animations) {
-      const interpolation = 1 - Math.pow(1 - anim.progress, 2);
-      const x = anim.start - (anim.start - anim.end) * interpolation;
-      ctx.drawImage(textures, anim.i * 90, 0, 90, 930, x, 0, 90, 930);
-    }
-
-    if (i < animations.length) {
-      requestAnimationFrame(draw);
+  } else {
+    for (let i = 0; i < rulers.length; i++) {
+      const ruler = rulers[i];
+      const rulerT = 1 - Math.pow(1 - Math.max(Math.min(t * rulers.length - i, 1), 0), 2);
+      const x = (1 - rulerT) * ctx.canvas.width + rulerT * i * 90;
+      ctx.drawImage(textures, (ruler + 1) * 90, 0, 90, 930, x, 0, 90, 930);
     }
   }
-
-  requestAnimationFrame(draw);
 }
 
-export default slideIn;
+export {drawRulers};
