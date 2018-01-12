@@ -8,6 +8,7 @@ function calculate(n: string, multiplier: number, ctx: CanvasRenderingContext2D,
   for (const digit of n.split("")) {
     rulers.push(new Ruler(parseInt(digit, 10)));
   }
+  ctx.canvas.width = rulers.length * 90;
   slideIn(ctx, rulers, offscreen);
 }
 

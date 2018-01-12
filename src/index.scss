@@ -4,6 +4,10 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+#triangle, #background {
+  display: none;
+}
+
 #container {
   height: 100vh;
   display: flex;

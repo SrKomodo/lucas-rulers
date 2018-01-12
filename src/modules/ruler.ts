@@ -55,35 +55,23 @@ class Ruler {
     let digitI = 0;
 
     // Setup default styles
-    ctx.lineCap = "butt";
-    ctx.lineJoin = "bevel";
     ctx.font = "16px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.strokeStyle = "#221005";
 
     // Draw background
-    ctx.fillStyle = "#e7c592";
-    ctx.beginPath();
-    ctx.rect(x, y, 90, 930);
-    ctx.fill();
-    ctx.stroke();
+    ctx.drawImage(document.getElementById("background") as HTMLImageElement, x, y);
 
     // Draw header
-    ctx.fillStyle = "#221005";
+    ctx.fillStyle = ctx.createPattern(document.getElementById("triangle") as HTMLImageElement, "repeat");
     ctx.fillText(this.digit.toString(), x + 45, y + 15);
 
     y += 30; // Offset everything else so they dont mess with the header
 
     // Store all i can in paths to bundle draw calls together
     const triangles = new Path2D();
-    const rows = new Path2D();
 
     for (const row of this.numbers) {
-      // Generate row separators
-      rows.moveTo(x, y + digitI * 20);
-      rows.lineTo(x + 90, y + digitI * 20);
-
       // Generate triangles
       for (const triangle of this.triangles[rowI]) {
         triangles.moveTo(x + 50, y + digitI * 20 + triangle[0] * 20);
@@ -101,12 +89,7 @@ class Ruler {
     }
 
     // Draw triangles
-    ctx.fillStyle = "#9c7761";
     (ctx.fill as (fillRule: string | Path2D) => void)(triangles); // Small hack to please typescript
-    ctx.stroke(triangles);
-
-    // Draw row separators
-    ctx.stroke(rows);
   }
 }
 
