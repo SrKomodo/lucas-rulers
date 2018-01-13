@@ -6,12 +6,12 @@ class Ruler {
    * Array of the numbers on the right side of the ruler.
    * Each item in the array is one of the rows, that contains the numbers that the row has
    */
-  protected numbers: number[][];
+  public numbers: number[][];
   /**
    * Array of all the triangles on the left side of the ruler.
    * Each triangle is an array of [Start number, End number, Number it points to]
    */
-  protected triangles: number[][];
+  public triangles: number[][][];
 
   /**
    * Creates a new Ruler

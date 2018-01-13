@@ -1,6 +1,8 @@
 import "./index.scss";
 
 import animate from "./modules/animator";
+import { calculate } from "./modules/calculator";
+import { IndexRuler, Ruler } from "./modules/ruler";
 
 import * as textureFile from "./assets/rulers.png";
 
@@ -13,16 +15,31 @@ window.addEventListener("DOMContentLoaded", () => {
   const textures = new Image();
   textures.src = textureFile;
 
-  // Get inputs
-  const numberInput = (document.getElementById("number") as HTMLInputElement);
-  const multiplierInput = (document.getElementById("multiplier") as HTMLInputElement);
+  // Get elements
+  const numberInput = document.getElementById("number") as HTMLInputElement;
+  const multiplierInput = document.getElementById("multiplier") as HTMLInputElement;
+  const calculateButton = document.getElementById("calculate") as HTMLAnchorElement;
+  const output = document.getElementById("output") as HTMLSpanElement;
 
   // Wait for textures to load
   textures.addEventListener("load", () => {
     // When you click calculate
-    document.getElementById("calculate").addEventListener("click", () => {
-      // Calculate and render the animation
-      animate(numberInput.value, parseInt(multiplierInput.value, 10), ctx, textures);
+    calculateButton.addEventListener("click", () => {
+
+      const rulers: Ruler[] = [];
+      rulers.push(new IndexRuler());
+      for (const digit of numberInput.value.split("")) {
+        rulers.push(new Ruler(parseInt(digit, 10)));
+      }
+
+      // Calculate the result
+      const result = calculate(rulers, parseInt(multiplierInput.value, 10));
+
+      // Show the result
+      output.innerText = result.numbers.reverse().join("");
+
+      // Render the animation
+      animate(rulers, result.path, ctx, textures);
     });
   });
 });
