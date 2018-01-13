@@ -26,6 +26,11 @@ window.addEventListener("DOMContentLoaded", () => {
     // When you click calculate
     calculateButton.addEventListener("click", () => {
 
+      // Validate data
+      if (!numberInput.checkValidity() || !multiplierInput.checkValidity()) {
+        return;
+      }
+
       const rulers: Ruler[] = [];
       rulers.push(new IndexRuler());
       for (const digit of numberInput.value.split("")) {
