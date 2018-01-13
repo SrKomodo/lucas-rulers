@@ -27,6 +27,7 @@ body {
   background-size: 40% auto;
   padding: 10px;
   max-width: 400px;
+  text-align: justify;
 
   h2, h3 {
     text-align: center;
@@ -98,8 +99,10 @@ body {
   width: 900px;
   flex-grow: 1;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;

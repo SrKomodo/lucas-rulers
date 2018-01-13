@@ -1,8 +1,6 @@
 import "./index.scss";
 
-import calculate from "./modules/calculator";
-import IndexRuler from "./modules/indexRuler";
-import Ruler from "./modules/ruler";
+import animate from "./modules/animator";
 
 import * as textureFile from "./assets/rulers.png";
 
@@ -24,7 +22,7 @@ window.addEventListener("DOMContentLoaded", () => {
     // When you click calculate
     document.getElementById("calculate").addEventListener("click", () => {
       // Calculate and render the animation
-      calculate(numberInput.value, parseInt(multiplierInput.value, 10), ctx, textures);
+      animate(numberInput.value, parseInt(multiplierInput.value, 10), ctx, textures);
     });
   });
 });
