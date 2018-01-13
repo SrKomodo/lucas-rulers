@@ -7,28 +7,35 @@
   <title>Lucas's Rulers</title>
 </head>
 <body>
-  <div id="container">
-    <div id="sidebar">
-      <h2>Genaille-Lucas Rulers</h2>
-      <div id="inputs">
-        <input id="number" type="number" min="0" max="9999999999">
-        <span>X</span>
-        <input id="multiplier" type="number" min="1" max="9">
-        <span>=</span>
-        <span id="output">???</span><br>
-        <a id="calculate">Calculate</a>
-      </div>
-      <p>Genaille-Lucas Rulers are special rulers designed to quickly do multiplication without having to do the math</p>
-      <h3>How does it work?</h3>
-      <p>Let's say you want to multiply 618 x 7</p>
-      <p>First you put the Index, 6, 1 and 8 rulers on the table</p>
-      <p>Then you follow the 7 row on the index ruler up to the right-most ruler, and go to the first number</p>
-      <p>Now all you have to do is to follow the triangles from ruler to ruler, and once you get to the Index ruler just read all the numbers you passed through to get the result!</p>
-      <p id="footer">Inspired by <a href="https://www.youtube.com/watch?v=OxRMyPsLtTk">Vsauce's toys</a></p>
-    </div>
-    <div id="canvasContainer">
+  <main>
+    <aside>
+      <section>
+        <h2>Genaille-Lucas Rulers</h2>
+        <div id="inputs">
+          <input id="number" type="number" min="0">
+          <span>X</span>
+          <input id="multiplier" type="number" min="1" max="9">
+          <span>=</span>
+          <span id="output">???</span>
+          <a id="calculate">Calculate</a>
+        </div>
+        <p>Genaille-Lucas Rulers are special rulers designed to quickly do multiplication without having to do the math</p>
+      </section>
+      <section>
+        <h3>How does it work?</h3>
+        <p>Let's say you want to multiply 618 by 7</p>
+        <p>First you put the Index, 6, 1 and 8 rulers on the table</p>
+        <p>Then you pick  the first number in the 7th row of the right-most ruler</p>
+        <p>Now all you have to do is to follow the triangles from ruler to ruler, and once you get to the Index just read all the numbers you passed through from left to right to get the result!</p>
+      </section>
+      <footer>
+        <p>Inspired by <a href="https://www.youtube.com/watch?v=OxRMyPsLtTk">Vsauce's toys</a></p>
+        <p>Check out the code in <a href="https://github.com/SrKomodo/lucas-rulers">Github</a></p>
+      </footer>
+    </aside>
+    <section id="canvasContainer">
       <canvas id="canvas" height="930"></canvas>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>
