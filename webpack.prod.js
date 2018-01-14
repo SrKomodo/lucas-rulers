@@ -33,7 +33,7 @@ module.exports = merge(common, {
       theme_color: "#A07942",
       "theme-color": "#A07942",
       start_url: "./",
-      display: "fullscreen",
+      display: "standalone",
       icons: [{
         src: path.resolve("src/assets/icon.png"),
         sizes: [96, 128, 192, 256, 484, 512]
