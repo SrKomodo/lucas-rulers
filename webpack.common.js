@@ -8,6 +8,7 @@ module.exports = {
     new CleanWebpackPlugin(["dist"]),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/assets/icon.png"
     })
   ],
   resolve: {
