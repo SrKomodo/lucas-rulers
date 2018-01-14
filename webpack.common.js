@@ -32,13 +32,17 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         use: {
-          loader: "file-loader"
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]"
+          }
         }
       }
     ]
   },
   output: {
     filename: "bundle.[hash].js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "https://srkomodo.github.io/lucas-rulers/"
   }
 };

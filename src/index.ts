@@ -1,3 +1,10 @@
+// Magic service worker stuff
+(() => {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./service-worker.js");
+  }
+})();
+
 import "./index.scss";
 
 import animate from "./modules/animator";
