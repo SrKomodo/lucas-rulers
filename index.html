@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lucas's Rulers</title>
+<meta name="theme-color" content="#A07942" /><link rel="manifest" href="https://arguablykomodo.github.io/lucas-rulers/manifest.df7e4b09ea9c39c71369ad38e626f154.json" /><link rel="shortcut icon" href="https://arguablykomodo.github.io/lucas-rulers/icon.png"><link href="https://arguablykomodo.github.io/lucas-rulers/bundle.90dc8c106e6bc83f85504e0a3c59abf3.css" rel="stylesheet"></head>
+<body>
+  <main>
+    <aside>
+      <section>
+        <h2>Genaille-Lucas Rulers</h2>
+        <div id="inputs">
+          <input id="number" aria-label="Number" type="number" min="0">
+          <span>X</span>
+          <input id="multiplier" aria-label="Multiplier" type="number" min="1" max="9">
+          <span>=</span>
+          <span id="output">???</span>
+          <a id="calculate">Calculate</a>
+        </div>
+        <p>Genaille-Lucas Rulers are special rulers designed to quickly do multiplication without having to do the math</p>
+      </section>
+      <section>
+        <h3>How does it work?</h3>
+        <p>Let's say you want to multiply 618 by 7</p>
+        <p>First you put the Index, 6, 1 and 8 rulers on the table</p>
+        <p>Then you pick  the first number in the 7th row of the right-most ruler</p>
+        <p>Now all you have to do is to follow the triangles from ruler to ruler, and once you get to the Index just read all the numbers you passed through from left to right to get the result!</p>
+      </section>
+      <footer>
+        <p>Inspired by <a href="https://www.youtube.com/watch?v=OxRMyPsLtTk">Michael's toys</a></p>
+        <p>Check out the code in <a href="https://github.com/SrKomodo/lucas-rulers">Github</a></p>
+      </footer>
+    </aside>
+    <section id="canvasContainer">
+      <canvas id="canvas" height="930"></canvas>
+    </section>
+  </main>
+<script type="text/javascript" src="https://arguablykomodo.github.io/lucas-rulers/bundle.d6624eeaab1fa56adf73.js"></script></body>
+</html>

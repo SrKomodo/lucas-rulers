@@ -1,0 +1,43 @@
+{
+  "icons": [
+    {
+      "src": "https://arguablykomodo.github.io/lucas-rulers/icon_512x512.830dc307ae772848ad9972eda11c6424.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://arguablykomodo.github.io/lucas-rulers/icon_484x484.3a022b9d347513fba8dcf467b1adffee.png",
+      "sizes": "484x484",
+      "type": "image/png"
+    },
+    {
+      "src": "https://arguablykomodo.github.io/lucas-rulers/icon_256x256.19427fc3357f58c3849840a5d700ac5f.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "https://arguablykomodo.github.io/lucas-rulers/icon_192x192.cfd2febcaf5b578f3cf5202c826cba3b.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://arguablykomodo.github.io/lucas-rulers/icon_128x128.2207028d94aabfe8dbb5e7a1bce090f6.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://arguablykomodo.github.io/lucas-rulers/icon_96x96.b4acfbc0dd620f13f793bd87d17a1572.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "Genaille-Lucas rulers",
+  "short_name": "Lucas Rulers",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "./",
+  "description": "An HTML5 visualization of Genaille-Lucas rulers",
+  "background_color": "#483220",
+  "theme_color": "#A07942",
+  "theme-color": "#A07942"
+}
