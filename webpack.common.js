@@ -43,6 +43,6 @@ module.exports = {
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: "https://srkomodo.github.io/lucas-rulers/"
+    publicPath: "https://arguablykomodo.github.io/lucas-rulers/"
   }
 };

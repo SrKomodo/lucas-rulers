@@ -44,7 +44,7 @@ module.exports = merge(common, {
       filename: "service-worker.js",
       minify: true,
       dontCacheBustUrlsMatching: /\.\w{8,}\./,
-      navigateFallback: "https://srkomodo.github.io/lucas-rulers/index.html"
+      navigateFallback: "https://arguablykomodo.github.io/lucas-rulers/index.html"
     })
   ]
 });
